@@ -1,3 +1,5 @@
+# 1. web3/
+
 ## Try running some of the following tasks:
 
 ```shell
@@ -12,4 +14,21 @@ npx hardhat compile
 
 npx hardhat run scripts/deploy.tx --network fuji
 # output : Contract address
+```
+
+# 2. client/
+
+## Try running some of the following tasks:
+
+```shell
+npm install
+
+npm run dev
+```
+
+## tips : install extension called -> ES7+ React/Redux/React-Native snippets
+```shell
+
+rafce
+
 ```

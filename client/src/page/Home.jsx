@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import { PageHOC, CustomInput, CustomButton } from '../components';
+import { CustomButton, CustomInput, PageHOC } from '../components';
 import { useGlobalContext } from '../context';
 
 const Home = () => {
@@ -10,15 +10,17 @@ const Home = () => {
   const handleClick = async () => {
     try{
       console.log({contract});
-
       // contract의 isPlayer 함수가 bool 값을 리턴하고 있음
       const playerExists = await contract.isPlayer(walletAddress);
-
+      console.log(playerExists);
       if(!playerExists) {
+        console.log("walletAddress", walletAddress);
+        console.log("playerName", playerName);
+        console.log("!playerExists");
         await contract.registerPlayer(playerName, playerName);
-
+        console.log("!playerExists");
         setShowAlert({
-         status: 'true',
+         status: true,
          type: 'info',
          message: `${playerName} is being summoned!`
         })

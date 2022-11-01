@@ -4,13 +4,34 @@ import { PageHOC, CustomInput, CustomButton } from '../components';
 import { useGlobalContext } from '../context';
 
 const Home = () => {
-  const { contract, walletAddress} = useGlobalContext();
+  const { contract, walletAddress, setShowAlert} = useGlobalContext();
   const { playerName, setPlayerName} = useState('');
+
+  const handleClick = async () => {
+    try{
+      console.log({contract});
+
+      // contract의 isPlayer 함수가 bool 값을 리턴하고 있음
+      const playerExists = await contract.isPlayer(walletAddress);
+
+      if(!playerExists) {
+        await contract.registerPlayer(playerName, playerName);
+
+        setShowAlert({
+         status: 'true',
+         type: 'info',
+         message: `${playerName} is being summoned!`
+        })
+      }
+    }catch(error) {
+      alert(error);
+    }
+  }
 
   return (
     <div className="flex flex-col">
       <CustomInput
-        Label="Name"
+        label="Name"
         placeholder="Enter your player name"
         value={playerName}
         handleValueChange={setPlayerName}
@@ -18,7 +39,7 @@ const Home = () => {
 
       <CustomButton
         title="Register"
-        handleClick={ () => {}}
+        handleClick={handleClick}
         restStyles="mt-6"
       />
     </div>

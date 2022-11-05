@@ -12,7 +12,7 @@ npm install --save-dev "hardhat@^2.12.0"
 
 npx hardhat compile
 
-npx hardhat run scripts/deploy.tx --network fuji
+npx hardhat run scripts/deploy.ts --network fuji
 # output : Contract address
 ```
 
